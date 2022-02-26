@@ -1,2 +1,2 @@
 all:
-	gcc -o mai -fsanitize=address ./main.c
+	gcc -o my_ls ./main.c
