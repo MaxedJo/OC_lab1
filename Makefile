@@ -1,2 +1,2 @@
 all:
-	gcc -o mai -fsanitize=address ./h.c
+	gcc -o mai -fsanitize=address ./main.c
