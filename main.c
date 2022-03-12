@@ -47,7 +47,7 @@ int readDir(char *dirName) {
     }
     size_t len = strlen(dirName);
     strncpy(buffer, dirName, len);
-    printf("%s\n", buffer);
+    printf("%s - dir\n", buffer);
     ls(buffer);
     while ((dp = readdir(pDir)) != NULL) {
         if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0) {
@@ -72,6 +72,32 @@ int ls(char *str) {
         if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0) {
             continue;
         }
+        //----------------------------------------------
+
+        //
+        //  char* full;
+        //  strcat(full,str);
+        //  strcat(full,"/");
+        //  strcat(full,dp->d_name);
+
+        // Например этот блок раскоменти
+        //struct stat statbuf;
+        //mode_t modes;
+        //stat(dp->d_name,&statbuf);
+        //modes = statbuf.st_mode;
+        //if (!S_ISDIR(modes) && (modes & S_IRWXU) == S_IXUSR){
+        //  printf("%s--",dp->d_name);
+        // }
+
+
+        //-----------------------------------------------------------------------
+        // Или вот этот способ
+        //    struct stat fileStat;
+        //   lstat(dp->d_name, &fileStat);
+        //   if (!S_ISDIR(fileStat.st_mode)) {
+        //       printf("%s---",dp->d_name);
+        // }
+        //-------------------------------------------------------------------
         printf("%s/%s\n", str, dp->d_name);
     }
     closedir(dirp);
